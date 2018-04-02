@@ -1,18 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
-import { AppComponent } from './app.component';
-
+import { entryComponents } from './app.factory'
+import { RouterModule } from '@angular/router'
+import { appRoutes } from './app.routes'
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [...Object.values(entryComponents)],
   imports: [
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true }
+    ),
     BrowserModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [...Object.values(entryComponents)]
 })
 export class AppModule { }
